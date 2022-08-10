@@ -1,0 +1,15 @@
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 10px;
+	padding: 13px;
+	
+	width: 200px;
+	height: 30px;
+	border-radius: 5px;
+	
+	background-color: rgb(213, 171, 252);
+	font-size: 22px;
+}

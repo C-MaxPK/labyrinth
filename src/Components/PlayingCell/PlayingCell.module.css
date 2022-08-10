@@ -1,0 +1,26 @@
+.cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 140px;
+	height: 140px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px grey;
+
+	background-color: rgb(199, 199, 199);
+	margin: 5px;
+	cursor: pointer;
+	position: relative;
+}
+
+.answer {
+	color: rgb(136, 27, 231);
+}
+
+.start {
+	position: absolute;
+	top: 30px;
+
+	font-weight: bold;
+}
