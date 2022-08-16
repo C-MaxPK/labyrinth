@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addEndPositionAction } from '../../store/PlayingField/actions';
-import { selectStartPosition } from '../../store/PlayingField/selectors';
+import { addEndPosition, selectStartPosition, selectEndPosition } from '../../store/PlayingField/reducer';
 import CellForArrowWay from '../CellForArrowWay/CellForArrowWay';
 import styles from './ArrowWay.module.css';
 
 const ArrowWay = () => {
 	const dispatch = useDispatch();
 	const startPosition = useSelector(selectStartPosition);
+	const endPosition = useSelector(selectEndPosition);
 	let currentPosition = startPosition;
 
 	const cellsId = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -28,8 +28,8 @@ const ArrowWay = () => {
 			return getRandomDirection(id);
 		}
 
-		if (id === 10) {
-				dispatch(addEndPositionAction(currentPosition));
+		if (id === 10  && startPosition !== 0 /* && endPosition === 0 */) {
+				dispatch(addEndPosition(currentPosition));
 		}
 
 		return randomValue;

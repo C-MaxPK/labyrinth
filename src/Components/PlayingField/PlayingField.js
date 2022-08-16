@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addStartPositionAction } from '../../store/PlayingField/actions';
-import { selectIdGameCells, selectStartPosition } from '../../store/PlayingField/selectors';
+import { addStartPosition, selectIdGameCells, selectStartPosition } from '../../store/PlayingField/reducer';
 import PlayingCell from '../PlayingCell/PlayingCell';
 import styles from './PlayingField.module.css';
 
@@ -11,8 +10,8 @@ const PlayingField = () => {
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
-		dispatch(addStartPositionAction());
-	}, [dispatch]);
+		dispatch(addStartPosition());
+	}, []);
 
 	return (
 		<div className={styles.playingField}>

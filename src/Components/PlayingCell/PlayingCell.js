@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showResultAction } from '../../store/PlayingField/actions';
-import { selectEndPosition, selectShowResult } from '../../store/PlayingField/selectors';
+import { showResult, selectEndPosition, selectShowResult, addStartPosition } from '../../store/PlayingField/reducer';
 import styles from './PlayingCell.module.css';
 
 const PlayingCell = ({ id, isStartPosition }) => {
 	const dispatch = useDispatch();
-	const showResult = useSelector(selectShowResult);
+	const result = useSelector(selectShowResult);
 	const endPosition = useSelector(selectEndPosition);
 	const [showAnswer, setShowAnswer] = useState(null);
 
 	useEffect(() => {
-		if (!showResult) {
+		if (!result) {
 			setShowAnswer(null);
 		} else if (id === endPosition) {
 			if (showAnswer !== 'ВЕРНО') {
 				setShowAnswer('верно ТУТ');
 			}
+			setTimeout(() => {
+				dispatch(addStartPosition());
+			}, 700);
 		}
-	}, [showResult]);
+	}, [result]);
 
 	const checkResult = () => {
 		if (id === endPosition) { 
@@ -27,13 +29,13 @@ const PlayingCell = ({ id, isStartPosition }) => {
 			setShowAnswer('НЕ верно');
 		};
 
-		dispatch(showResultAction());
+		dispatch(showResult());
 	};
 
 	return (
 		<div className={styles.cell} onClick={checkResult}>
 			<div className={styles.answer}>
-				{showResult && showAnswer}
+				{result && showAnswer}
 			</div>
 			{isStartPosition  && <div className={styles.start}>СТАРТ</div>}
 		</div>
