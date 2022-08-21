@@ -4,7 +4,7 @@ import store from './store/store';
 import App from './App';
 import './index.css';
 
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root')!);
 root.render(
   <Provider store={store}>
     <App />

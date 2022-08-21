@@ -1,6 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-const initialState = {
+export interface PlayingField {
+  idGameCells: Array<number>;
+  startPosition: number;
+  endPosition: number;
+  showResult: boolean;
+}
+
+const initialState: PlayingField = {
     idGameCells: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 		startPosition: 0,
 		endPosition: 0,
@@ -31,9 +39,9 @@ export const playingField = createSlice({
 
 export const { addStartPosition, addEndPosition, showResult } = playingField.actions;
 
-export const selectIdGameCells = (state) => state.game.idGameCells;
-export const selectStartPosition = (state) => state.game.startPosition;
-export const selectEndPosition = (state) => state.game.endPosition;
-export const selectShowResult = (state) => state.game.showResult;
+export const selectIdGameCells = (state: RootState) => state.game.idGameCells;
+export const selectStartPosition = (state: RootState) => state.game.startPosition;
+export const selectEndPosition = (state: RootState) => state.game.endPosition;
+export const selectShowResult = (state: RootState) => state.game.showResult;
 
 export default playingField.reducer;

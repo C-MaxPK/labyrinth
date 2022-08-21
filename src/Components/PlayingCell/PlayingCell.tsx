@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { showResult, selectEndPosition, selectShowResult, addStartPosition } from '../../store/PlayingField/reducer';
 import styles from './PlayingCell.module.css';
 
-const PlayingCell = ({ id, isStartPosition }) => {
-	const dispatch = useDispatch();
-	const result = useSelector(selectShowResult);
-	const endPosition = useSelector(selectEndPosition);
-	const [showAnswer, setShowAnswer] = useState(null);
+interface PlayingCellProps {
+	id: number;
+	isStartPosition: boolean;
+}
+
+const PlayingCell = ({ id, isStartPosition }: PlayingCellProps): JSX.Element => {
+	const dispatch = useAppDispatch();
+	const result = useAppSelector<boolean>(selectShowResult);
+	const endPosition = useAppSelector<number>(selectEndPosition);
+	const [showAnswer, setShowAnswer] = useState<string>('');
 
 	useEffect(() => {
 		if (!result) {
-			setShowAnswer(null);
-		} else if (id === endPosition) {
+			setShowAnswer('');
+		}
+		if (id === endPosition) {
 			if (showAnswer !== 'ВЕРНО') {
 				setShowAnswer('верно ТУТ');
 			}
@@ -22,7 +28,7 @@ const PlayingCell = ({ id, isStartPosition }) => {
 		}
 	}, [result]);
 
-	const checkResult = () => {
+	const checkResult = (): void => {
 		if (id === endPosition) { 
 			setShowAnswer('ВЕРНО');
 		} else {

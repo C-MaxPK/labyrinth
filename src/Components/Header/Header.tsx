@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = (): JSX.Element => {
 
 	return (
 		<div className={styles.title}>
